@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner')
+require_relative('album')
 
 class Artist
 
@@ -28,6 +29,16 @@ def Artist.delete_all
   sql = "DELETE FROM artists"
   SqlRunner.run(sql)
 end
+
+def albums
+  sql = "SELECT * FROM albums
+        WHERE artist_id = $1"
+  values = [@id]
+  albums_list = SqlRunner.run(sql, values)
+  albums = albums_list.map{ |album_list| Album.new(album_list) }
+  return albums
+end
+
 
 
 
