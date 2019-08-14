@@ -18,7 +18,16 @@ def save
   @id = result[0]["id"].to_i
 end
 
+def Artist.all
+  sql = "SELECT * FROM artists"
+  artists = SqlRunner.run(sql)
+  return artists.map { | artist | Artist.new(artist) }
+end
 
+def Artist.delete_all
+  sql = "DELETE FROM artists"
+  SqlRunner.run(sql)
+end
 
 
 
