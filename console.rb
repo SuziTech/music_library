@@ -40,5 +40,9 @@ album2.save()
 album3.save()
 album4.save()
 
+album1.delete()
+
+poets = Artist.find(artist2.id)
+
 binding.pry
 nil
